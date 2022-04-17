@@ -13,11 +13,11 @@ type User struct {
 	Email     string    `json:"email" validate:"required,email,min=6,max=32" gorm:"type:varchar(255);not null;unique"`
 	Password  string    `json:"password" gorm:"type:varchar"`
 
-	Varifired bool `json:"is_varified" gorm:"type:boolean default:false"`
+	Varifired bool `json:"is_varified" gorm:"type:boolean"`
 
 	// TODO needs to covert to ENUM type later
-	UserType     string `json:"user_type" gorm:"type:varchar(100) default:'user'"`
-	Authprovider string `json:"auth_provider" gorm:"type:varchar(60) default:'google'"`
+	UserType     string `json:"user_type" gorm:"type:varchar(100)"`
+	Authprovider string `json:"auth_provider" gorm:"type:varchar(60)"`
 }
 
 func (user *User) BeforeCreate(tx *gorm.DB) (err error) {

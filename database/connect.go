@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/imanaspaul/googlemerchent/config"
+	"github.com/imanaspaul/googlemerchent/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -25,7 +26,10 @@ func ConnectDB() error {
 	}
 
 	fmt.Println("Connection Opened to Database")
-	DB.AutoMigrate()
+	err = DB.AutoMigrate(&models.User{})
+	if err != nil {
+		return err
+	}
 	fmt.Println("Database Migrated")
 
 	return nil
